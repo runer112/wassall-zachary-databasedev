@@ -1,0 +1,41 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <p class="navbar-text navbar-left">
+                <a onclick="window.history.back()" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left">
+                    </span>
+                </a>
+            </p>
+            <button type="button" class="navbar-toggle navbar-right" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#!/">
+                <div class="navbar-brand">ProximiT</div>
+            </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse" aria-expanded="false">
+            <ul class="nav navbar-nav">
+                <li ng-class="title === 'Routes' ? 'active' : ''"><a href="#!/route">Routes</a></li>
+                <li ng-class="title === 'Stops' ? 'active' : ''"><a href="#!/stop"><span class="glyphicon glyphicon-search"></span> Stops</a></li>
+                <li ng-class="title === 'Login' ? 'active' : ''" ng-if="!user"><a href="#!/login">Login</a></li>
+                <li ng-class="title === 'Register' ? 'active' : ''" ng-if="!user"><a href="#!/register">Register</a></li>
+                <li ng-if="user.isAdmin" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Admin <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#!/admin/users">Users</a></li>
+                    </ul>
+                </li>
+                <li ng-class="title === 'Profile' ? 'active' : ''" ng-if="user"><a href="#!/profile/{{user._id}}">Profile</a>
+                </li>
+                <li ng-if="user"><a ng-click="logout()">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

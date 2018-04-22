@@ -1,0 +1,19 @@
+<div ng-repeat="alert in model.alerts">
+    <div class="alert alert-warning">
+        <p ng-if="model.deleteRouteAlert && (user.isOfficial || user.isAdmin)"
+           class="pull-right">
+            <a ng-click="model.deleteRouteAlert($index)">
+                <span class="glyphicon glyphicon-remove zw-remove">
+                </span>
+            </a>
+        </p>
+        <p class="zw-alert-time">
+            <span am-time-ago="'{{alert.updatedAt}}' | amParse: 'YYYY-MM-DDTHH:mm:ssZ'"></span>
+        </p>
+        <h5 ng-if="model.showAlertRoute"
+            style="color:#{{alert.route.attributes.color}}">
+            {{alert.route.attributes.long_name}}
+        </h5>
+        {{alert.message}}
+    </div>
+</div>

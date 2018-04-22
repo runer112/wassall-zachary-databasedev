@@ -1,0 +1,15 @@
+<div ng-include="'views/templates/navbar.view.client.html'"></div>
+
+<div class="container zw-with-nav">
+    <h3>Routes</h3>
+    <div ng-show="model.routes">
+        <div ng-repeat="route in model.routes">
+            <div ng-repeat="direction in route.attributes.direction_names">
+                <a href="#!/route/{{route.id}}/stop?direction={{$index}}"
+                   style="color:#{{route.attributes.color}}">
+                    {{route.attributes.long_name}} ({{direction}})
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

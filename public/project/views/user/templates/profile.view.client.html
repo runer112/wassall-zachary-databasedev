@@ -1,0 +1,104 @@
+<div ng-include="'views/templates/navbar.view.client.html'"></div>
+
+<div class="container zw-with-nav">
+    <div ng-if="user && user._id !== model.user._id">
+        <button id="friendButton"
+                ng-click="model.toggleFriendUser()"
+                class="btn btn-default zw-btn-friend">
+            {{model.friendButtonText}}
+        </button>
+    </div>
+    <h3>{{model.user.displayName ? model.user.displayName : model.user.username}}</h3>
+    <div ng-if="model.user.isAdmin">
+        Admin
+    </div>
+    Joined {{model.user.dateCreated | date}}
+    <div ng-if="user._id === model.user._id || user.isAdmin">
+        <form ng-submit="model.updateUser()">
+            <div ng-show="model.successMessage" class="alert alert-success">
+                {{model.successMessage}}
+            </div>
+            <div ng-show="model.errorMessage" class="alert alert-danger">
+                {{model.errorMessage}}
+            </div>
+            <label for="username">Username</label>
+            <input id="username"
+                   ng-model="model.user.username"
+                   type="text"
+                   readonly
+                   class="form-control"/>
+            <label for="email">Email</label>
+            <input id="email"
+                   ng-model="model.user.email"
+                   type="email"
+                   ng-change="model.successMessage = null"
+                   class="form-control"/>
+            <label for="displayname">Display Name</label>
+            <input id="displayname"
+                   ng-model="model.user.displayName"
+                   type="text"
+                   ng-change="model.successMessage = null"
+                   class="form-control"/>
+            <div ng-if="user.isAdmin">
+                <input id="isOfficial"
+                       ng-model="model.user.isOfficial"
+                       type="checkbox"
+                       ng-change="model.successMessage = null"
+                       class="zw-checkbox"/>
+                <label for="isOfficial">Official</label>
+                <input id="isAdmin"
+                       ng-model="model.user.isAdmin"
+                       type="checkbox"
+                       ng-disabled="user._id === model.user._id"
+                       ng-change="model.successMessage = null"
+                       class="zw-checkbox"/>
+                <label for="isAdmin">Admin</label>
+            </div>
+            <div class="zw-group">
+                <button id="submitButton"
+                        type="submit"
+                        class="btn btn-block btn-success">
+                    Save
+                </button>
+                <button id="deleteButton"
+                        ng-if="user.isAdmin && !(user._id === model.user._id)"
+                        ng-click="model.deleteUser()"
+                        class="btn btn-block btn-danger">
+                    Delete
+                </button>
+            </div>
+        </form>
+    </div>
+    <div ng-if="!(user._id === model.user._id || user.isAdmin)">
+        <div ng-if="model.user.email">
+            <a href="mailto:{{model.user.email}}">{{model.user.email}}</a>
+        </div>
+    </div>
+    <hr>
+    <h4>Friends</h4>
+    <div ng-if="model.user.friends.length" class="zw-list">
+        <div ng-repeat="friend in model.user.friends"
+             class="zw-list-item">
+            <a href="#!/profile/{{friend._id}}">{{friend.displayName}}</a>
+            <p ng-if="user._id === model.user._id || user.isAdmin"
+               class="pull-right">
+                <a ng-click="model.unfriendUser(friend._id)">
+                    <span class="glyphicon glyphicon-remove zw-remove">
+                    </span>
+                </a>
+            </p>
+        </div>
+    </div>
+    <div ng-if="!model.user.friends.length" class="zw-h-center">
+        Nobody
+    </div>
+    <div ng-if="model.favoriteDepartures">
+        <hr>
+        <h4>Favorites</h4>
+        <div ng-show="!model.favoriteDepartures.length"
+             class="zw-h-center">
+            None
+        </div>
+        <div ng-include="'views/departure/templates/favorite-departures.template.view.client.html'"></div>
+    </div>
+</div>

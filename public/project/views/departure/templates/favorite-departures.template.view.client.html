@@ -1,0 +1,24 @@
+<div ng-show="model.favoriteDepartures.length"
+     class="zw-list">
+    <div ng-repeat="favorite in model.favoriteDepartures"
+         class="ng-scope panel panel-default zw-list-item">
+        <p ng-if="model.unfavorite && (user._id === model.user._id || user.isAdmin)"
+           class="pull-right">
+            <a ng-click="model.unfavorite($index)">
+                <span class="glyphicon glyphicon-remove zw-remove">
+                </span>
+            </a>
+        </p>
+        <a href="#!/route/{{favorite.route.id}}/stop/{{favorite.stop.id}}?direction={{favorite.direction}}">
+            <h4>
+                {{favorite.stop.attributes.name}}
+            </h4>
+            <h5 style="color:#{{favorite.route.attributes.color}}">
+                {{favorite.route.attributes.long_name}} ({{favorite.route.attributes.direction_names[favorite.direction]}})
+            </h5>
+        </a>
+        <div ng-repeat="departure in favorite.departures">
+            <span am-time-ago="'{{departure.attributes.departure_time}}' | amParse: 'YYYY-MM-DDTHH:mm:ssZ'"></span>
+        </div>
+    </div>
+</div>

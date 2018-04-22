@@ -1,0 +1,38 @@
+<div ng-include="'views/templates/navbar.view.client.html'"></div>
+
+<div class="container zw-with-nav">
+    <div ng-show="model.route && model.route.id === model.routeId && model.stop && model.stop.id === model.stopId">
+        <div ng-if="user">
+            <button id="favoriteButton"
+                    ng-click="model.toggleFavorite()"
+                    class="btn btn-default zw-btn-friend">
+                {{model.favoriteButtonText}}
+            </button>
+        </div>
+        <a href="#!/stop?q={{model.stop.attributes.name}}">
+            <h3>
+                {{model.stop.attributes.name}}
+            </h3>
+        </a>
+        <a href="#!/route/{{model.routeId}}/stop?direction={{model.direction}}">
+            <h4 style="color:#{{model.route.attributes.color}}">
+                {{model.route.attributes.long_name}} ({{model.directionName}})
+            </h4>
+        </a>
+        <div ng-include="'views/alert/templates/alerts.template.view.client.html'"></div>
+        <iframe width="600"
+                height="450"
+                frameborder="0" style="border:0"
+                ng-src="{{model.getMapSrc()}}"
+                allowfullscreen>
+        </iframe>
+        <div ng-show="model.departures">
+            <h4>
+                Departures
+            </h4>
+            <div ng-repeat="departure in model.departures">
+                <span am-time-ago="'{{departure.attributes.departure_time}}' | amParse: 'YYYY-MM-DDTHH:mm:ssZ'"></span>
+            </div>
+        </div>
+    </div>
+</div>

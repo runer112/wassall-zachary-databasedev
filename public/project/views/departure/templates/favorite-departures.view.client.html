@@ -1,0 +1,22 @@
+<div ng-include="'views/templates/navbar.view.client.html'"></div>
+
+<div class="container zw-with-nav">
+    <h3>Favorites</h3>
+    <div ng-if="!user"
+         class="zw-h-center">
+        Log in or register and add some stops as favorites to see them here.
+    </div>
+    <div ng-if="user">
+        <div ng-show="model.favoriteDepartures">
+            <div ng-show="!model.favoriteDepartures.length"
+                 class="zw-h-center">
+                Add some stops as favorites to see them here.
+            </div>
+            <div ng-include="'views/departure/templates/favorite-departures.template.view.client.html'"></div>
+            <div ng-show="model.favoriteDepartures.length"
+                 class="zw-h-center">
+                Favorites can be managed from <a href="#!/profile/{{user._id}}">your profile page</a>.
+            </div>
+        </div>
+    </div>
+</div>

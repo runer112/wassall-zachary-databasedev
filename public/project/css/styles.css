@@ -1,0 +1,125 @@
+/* header/footer */
+
+.navbar-nav {
+    line-height: 50px;
+    padding: 0;
+}
+
+@media (min-width: 768px) {
+    .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+        margin-left: 0;
+    }
+}
+
+.navbar-left {
+    float: left;
+    margin-left: 15px;
+    margin-right: 0;
+}
+
+/* body elements */
+
+.cl {
+    clear: both;
+}
+
+.zw-with-nav {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.zw-group {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: bold;
+}
+
+a {
+    cursor: pointer;
+}
+
+a:hover, a:visited, a:link, a:active {
+    text-decoration: none;
+}
+
+label {
+    margin-top: 10px;
+}
+
+.form-control {
+    margin-bottom: 10px;
+}
+
+.form-group, .input-group {
+    margin-bottom: 5px;
+}
+
+.help-block {
+    margin-bottom: 0;
+}
+
+.alert {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.zw-alert-time {
+    font-style: italic;
+    float: right;
+    clear: left;
+    margin-top: 0 !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 0px;
+    padding-bottom: 5px;
+}
+
+.zw-right {
+    float: right;
+    clear: left;
+}
+
+.zw-btn-friend {
+    margin-top: 20px;
+    float: right;
+    clear: left;
+}
+
+.zw-h-center {
+    text-align: center;
+    font-size: 120%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.nav-tabs {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.zw-remove {
+    color: red;
+}
+
+.zw-checkbox {
+}
+
+/* lists */
+
+.zw-list {
+    padding-left: 0;
+}
+
+.zw-list-item {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    list-style-type: none;
+}
