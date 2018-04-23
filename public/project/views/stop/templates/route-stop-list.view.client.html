@@ -12,11 +12,11 @@
             </a>
         </div>
     </div>
-    <hr>
-    <h4>
-        Create Route Alert
-    </h4>
     <div ng-if="user.isOfficial || user.isAdmin">
+        <hr>
+        <h4>
+            Create Route Alert
+        </h4>
         <form ng-submit="model.createRouteAlert()">
             <div ng-show="model.errorMessage" class="alert alert-danger">
                 {{model.errorMessage}}
