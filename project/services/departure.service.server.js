@@ -52,17 +52,32 @@ module.exports = function (app, services) {
         var direction = Number.parseInt(query.direction);
 
         if (direction === 0 || direction === 1) {
-            var limit = query.limit ? query.limit : 5;
-            deferred.resolve(services.mbtaService.get({
+            services.mbtaService.get({
                 url: "https://api-v3.mbta.com/predictions",
                 qs: {
                     "filter[route]": routeId,
                     "filter[direction_id]": direction,
                     "filter[stop]": stopId,
-                    "sort": "departure_time",
-                    "page[limit]": limit
+                    "sort": "departure_time"
                 }
-            }));
+            }).then(function (departures) {
+                var limit = query.limit ? query.limit : 5;
+                var validDepartures = [];
+
+                for (var i = 0; i < departures.length; i++) {
+                    if (validDepartures.length == limit) {
+                        break;
+                    }
+
+                    var departure = departures[i];
+
+                    if (departure.attributes.departure_time) {
+                        validDepartures.push(departure);
+                    }
+                }
+
+                deferred.resolve(validDepartures);
+            });
         } else {
             deferred.reject("Invalid direction");
         }
