@@ -34,10 +34,7 @@
 
 .zw-jumbolink-project-bg {
     background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("../assets/images/project.png");
-}
-
-.zw-jumbolink-assignment-bg {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url("../assets/images/assignment.png");
+    background-position-y: 10%;
 }
 
 .zw-jumbolink-github-bg {
